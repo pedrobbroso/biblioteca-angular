@@ -18,6 +18,8 @@ export class ListarLivrosComponent implements OnInit {
   livros$: Observable<Livro[]> | undefined;
   error$ = new Subject<boolean>();
 
+  livros: Livro[] = [];
+
   livroSelecionado!: Livro;
 
   idParaExclusao!: number;

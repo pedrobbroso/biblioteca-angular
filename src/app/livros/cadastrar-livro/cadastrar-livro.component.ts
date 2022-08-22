@@ -33,6 +33,9 @@ export class CadastrarLivroComponent implements OnInit {
   cadastraLivro() {
     if (this.livroForm.valid) {
       const livro = this.livroForm.getRawValue() as Livro;
+      const autoresString = this.livroForm.get('autoresIds')?.value;
+      const autores = autoresString.split(',');
+      livro.autoresIds = autores;
 
       this.livroService.criaLivro(livro).subscribe({
         next: (resposta) => {

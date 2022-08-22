@@ -12,7 +12,10 @@
       </div>
     </div>
   </div>
-  <div class="card-body">
+  <div *ngIf="(autores$ | async)?.length == 0; else showData">
+    <h3 class="text-danger mb-3">Não há autores cadastrados</h3>
+  </div>
+  <ng-template #showData class="card-body">
     <table class="table" *ngIf="autores$ | async as autores; else loadingError">
       <thead>
         <tr>
@@ -28,7 +31,10 @@
           <td>{{ autor.biografia }}</td>
           <td>
             <span>
-              <button class="btn btn-success" (click)="editarAutor(autor)">
+              <button
+                class="btn btn-success float-end"
+                (click)="editarAutor(autor)"
+              >
                 Editar
                 <i class="fa fa-edit"></i>
               </button>
@@ -52,5 +58,5 @@
         </div>
       </ng-template>
     </ng-template>
-  </div>
+  </ng-template>
 </div>

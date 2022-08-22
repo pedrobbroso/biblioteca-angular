@@ -17,6 +17,8 @@ export class EditarLivroComponent implements OnInit {
 
   livroId!: number;
 
+  stringAutoresIds: number[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private livroService: LivroService,
@@ -40,6 +42,11 @@ export class EditarLivroComponent implements OnInit {
         this.livroForm.get('titulo')?.setValue(this.livro.titulo);
         this.livroForm.get('anoLancamento')?.setValue(this.livro.anoLancamento);
         this.livroForm.get('autoresIds')?.setValue(this.livro.autoresIds);
+
+        for (var autor of this.livro.autores) {
+          this.stringAutoresIds.push(autor.id);
+        }
+        this.livroForm.get(['autoresIds'])?.setValue(this.stringAutoresIds);
       },
       error: (erro) => {
         alert('Não foi possível achar o livro');
@@ -50,11 +57,14 @@ export class EditarLivroComponent implements OnInit {
   atualizaLivro() {
     if (this.livroForm.valid) {
       const livro = this.livroForm.getRawValue() as Livro;
+      const autoresString = this.livroForm.get('autoresIds')?.value + [''];
+      const autores = autoresString.split(',');
+      livro.autoresIds = autores;
 
       this.livroService.atualizaLivro(this.livro.id, livro).subscribe({
         next: (resposta) => {
           alert('Livro atualizado com sucesso!');
-          this.router.navigate(['lista-autores']);
+          this.router.navigate(['lista-livros']);
         },
         error: (erro) => {
           alert('Erro ao atualizar livro!');
