@@ -1,1 +1,56 @@
-<p>listar-autor works!</p>
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex flex-row">
+      <div class="me-auto p-2"><h3>Lista de Autores</h3></div>
+      <div class="p-2">
+        <button type="button" class="btn btn-primary" (click)="criaAutor()">
+          Cadastrar
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="listAutores()">
+          Atualizar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table" *ngIf="autores$ | async as autores; else loadingError">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Biografia</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let autor of autores">
+          <th scope="row">{{ autor.id }}</th>
+          <td>{{ autor.nome }}</td>
+          <td>{{ autor.biografia }}</td>
+          <td>
+            <span>
+              <button class="btn btn-success" (click)="editarAutor(autor)">
+                Editar
+                <i class="fa fa-edit"></i>
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #loadingError>
+      <div *ngIf="error$ | async; else loading">
+        <span>Erro ao carregar autores!</span>
+      </div>
+      <ng-template #loading>
+        <div class="d-flex align-items-center">
+          <span>Carregando...</span>
+          <div
+            class="spinner-border ms-auto"
+            role="status"
+            aria-hidden="true"
+          ></div>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

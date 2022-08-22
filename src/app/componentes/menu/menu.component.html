@@ -14,9 +14,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active text-white">Home</a>
-        <a class="nav-link active text-white">Autor</a>
-        <a class="nav-link active text-white">Livro</a>
+        <a class="nav-link active text-white" [routerLink]="['lista-autores']"
+          >Home</a
+        >
+        <a class="nav-link active text-white" [routerLink]="['lista-autores']"
+          >Autor</a
+        >
+        <a class="nav-link active text-white" [routerLink]="['lista-livros']"
+          >Livro</a
+        >
       </div>
     </div>
   </div>

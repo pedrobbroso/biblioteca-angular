@@ -1,1 +1,127 @@
-<p>listar-livros works!</p>
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex flex-row">
+      <div class="me-auto p-2"><h3>Lista de Livros</h3></div>
+      <div class="p-2">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="cadastrarLivro()"
+        >
+          Cadastrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="listarLivros()"
+        >
+          Atualizar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table" *ngIf="livros$ | async as livros; else loadingError">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Título</th>
+          <th scope="col">Ano de Lançamento</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let livro of livros">
+          <th scope="row">{{ livro.id }}</th>
+          <td>{{ livro.titulo }}</td>
+          <td>{{ livro.anoLancamento }}</td>
+          <td class="float-end">
+            <span>
+              <button class="btn btn-success" (click)="editarLivro(livro)">
+                Editar
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="btn btn-danger" (click)="confirmaExclusao(livro)">
+                Excluir
+                <i class="fa fa-trash"></i>
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #loadingError>
+      <div *ngIf="error$ | async; else loading">
+        <span>Erro ao carregar livros!</span>
+      </div>
+      <ng-template #loading>
+        <div class="d-flex align-items-center">
+          <span>Carregando...</span>
+          <div
+            class="spinner-border ms-auto"
+            role="status"
+            aria-hidden="true"
+          ></div>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="modalDeleta"
+  tabindex="-1"
+  aria-labelledby="modalLivrosLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white">Livro excluído</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Livro excluído com sucesso!</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmação de exclusão -->
+<div class="modal fade" id="modalConfirmacao" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Excluir livro</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-black"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Deseja realmente excluir o livro?</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deletarLivro(idParaExclusao)"
+          data-bs-dismiss="modal"
+        >
+          <b>Sim</b>
+        </button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+          Não
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
