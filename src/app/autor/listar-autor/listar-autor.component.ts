@@ -45,11 +45,4 @@ export class ListarAutorComponent implements OnInit {
   editarAutor(autor: Autor) {
     this.router.navigate(['edita-autor', autor.id]);
   }
-
-  onDelete(Autor: any) {
-    // this.cursoSelecionado = cursos;
-    // this.deleteModalRef = this.modalService.show(this.deleteModal, {
-    //   class: 'modal-sm',
-    // });
-  }
 }
