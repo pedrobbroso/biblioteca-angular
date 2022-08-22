@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Livro } from './../../models/livro';
 import { LivroService } from './../../services/livro/livro.service';
@@ -16,11 +17,14 @@ export class CadastrarLivroComponent implements OnInit {
   livroForm!: FormGroup;
 
   constructor(
+    private title: Title,
     private formBuilder: FormBuilder,
     private livroService: LivroService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    title.setTitle('Cadastro de Livro');
+  }
 
   ngOnInit(): void {
     this.livroForm = this.formBuilder.group({

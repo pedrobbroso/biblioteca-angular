@@ -1,6 +1,7 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { Autor } from './../../models/autor';
 import { AutorService } from './../../services/autor/autor.service';
@@ -17,8 +18,11 @@ export class CadastrarAutorComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private autorService: AutorService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private title: Title
+  ) {
+    title.setTitle('Cadastro de Autor');
+  }
 
   ngOnInit(): void {
     this.autorForm = this.formBuilder.group({

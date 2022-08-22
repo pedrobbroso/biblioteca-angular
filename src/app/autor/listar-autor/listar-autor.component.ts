@@ -1,8 +1,10 @@
-import { Autor } from './../../models/autor';
-import { Router } from '@angular/router';
-import { AutorService } from './../../services/autor/autor.service';
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, Observable, of, Subject } from 'rxjs';
+
+import { Autor } from './../../models/autor';
+import { AutorService } from './../../services/autor/autor.service';
 
 @Component({
   selector: 'app-listar-autor',
@@ -11,16 +13,22 @@ import { catchError, Observable, of, Subject } from 'rxjs';
   preserveWhitespaces: true,
 })
 export class ListarAutorComponent implements OnInit {
-  constructor(private autorService: AutorService, private router: Router) {}
+  constructor(
+    private autorService: AutorService,
+    private router: Router,
+    private title: Title
+  ) {
+    title.setTitle('Listar Autores');
+  }
 
   autores$: Observable<Autor[]> | undefined;
   error$ = new Subject<boolean>();
 
   ngOnInit(): void {
-    this.listAutores();
+    this.listaAutores();
   }
 
-  listAutores() {
+  listaAutores() {
     this.autores$ = this.autorService.listaTodosAutores().pipe(
       catchError((error) => {
         alert('Erro ao listar autores!');

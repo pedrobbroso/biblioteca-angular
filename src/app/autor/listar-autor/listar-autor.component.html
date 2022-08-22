@@ -6,7 +6,11 @@
         <button type="button" class="btn btn-primary" (click)="criaAutor()">
           Cadastrar
         </button>
-        <button type="button" class="btn btn-secondary" (click)="listAutores()">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="listaAutores()"
+        >
           Atualizar
         </button>
       </div>
@@ -45,7 +49,7 @@
     </table>
     <ng-template #loadingError>
       <div *ngIf="error$ | async; else loading">
-        <span>Erro ao carregar autores!</span>
+        <h3 class="text-danger">Erro ao carregar autores!</h3>
       </div>
       <ng-template #loading>
         <div class="d-flex align-items-center">

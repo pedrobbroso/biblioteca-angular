@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LivroService } from './../../services/livro/livro.service';
 import { Livro } from './../../models/livro';
@@ -20,11 +21,14 @@ export class EditarLivroComponent implements OnInit {
   stringAutoresIds: number[] = [];
 
   constructor(
+    private title: Title,
     private formBuilder: FormBuilder,
     private livroService: LivroService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    title.setTitle('Editar Livro');
+  }
 
   ngOnInit(): void {
     this.livroId = Number(this.activatedRoute.snapshot.paramMap.get('livroId'));

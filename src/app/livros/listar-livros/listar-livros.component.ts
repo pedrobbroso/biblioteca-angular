@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Observable, Subject, catchError, of } from 'rxjs';
 import { Livro } from './../../models/livro';
 import { Router } from '@angular/router';
@@ -13,7 +14,13 @@ declare function abreModal(id: string): any;
   preserveWhitespaces: true,
 })
 export class ListarLivrosComponent implements OnInit {
-  constructor(private livroService: LivroService, private router: Router) {}
+  constructor(
+    private livroService: LivroService,
+    private router: Router,
+    private title: Title
+  ) {
+    title.setTitle('Listar Livros');
+  }
 
   livros$: Observable<Livro[]> | undefined;
   error$ = new Subject<boolean>();

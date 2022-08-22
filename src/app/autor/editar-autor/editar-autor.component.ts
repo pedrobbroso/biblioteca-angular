@@ -1,8 +1,10 @@
-import { Autor } from './../../models/autor';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AutorService } from './../../services/autor/autor.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Autor } from './../../models/autor';
+import { AutorService } from './../../services/autor/autor.service';
 
 @Component({
   selector: 'app-editar-autor',
@@ -18,11 +20,14 @@ export class EditarAutorComponent implements OnInit {
   autorId!: number;
 
   constructor(
+    private title: Title,
     private formBuilder: FormBuilder,
     private autorService: AutorService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    title.setTitle('Editar Autor');
+  }
 
   ngOnInit(): void {
     this.autorId = Number(this.activatedRoute.snapshot.paramMap.get('autorId'));

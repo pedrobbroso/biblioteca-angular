@@ -54,7 +54,7 @@
     </table>
     <ng-template #loadingError>
       <div *ngIf="error$ | async; else loading">
-        <span>Erro ao carregar livros!</span>
+        <h3 class="text-danger">Erro ao carregar livros!</h3>
       </div>
       <ng-template #loading>
         <div class="d-flex align-items-center">
