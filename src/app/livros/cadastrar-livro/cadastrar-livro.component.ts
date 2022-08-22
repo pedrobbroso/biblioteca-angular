@@ -1,11 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Livro } from './../../models/livro';
 import { LivroService } from './../../services/livro/livro.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-
-declare function blur(evento: any): any;
 
 @Component({
   selector: 'app-cadastrar-livro',

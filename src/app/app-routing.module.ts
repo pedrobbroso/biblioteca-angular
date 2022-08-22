@@ -1,22 +1,18 @@
-import { EditarLivroComponent } from './livros/editar-livro/editar-livro.component';
-import { CadastrarLivroComponent } from './livros/cadastrar-livro/cadastrar-livro.component';
-import { ListarLivrosComponent } from './livros/listar-livros/listar-livros.component';
-import { EditarAutorComponent } from './autor/editar-autor/editar-autor.component';
-import { CadastrarAutorComponent } from './autor/cadastrar-autor/cadastrar-autor.component';
-import { ListarAutorComponent } from './autor/listar-autor/listar-autor.component';
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { CadastrarAutorComponent } from './autor/cadastrar-autor/cadastrar-autor.component';
+import { EditarAutorComponent } from './autor/editar-autor/editar-autor.component';
+import { ListarAutorComponent } from './autor/listar-autor/listar-autor.component';
+import { CadastrarLivroComponent } from './livros/cadastrar-livro/cadastrar-livro.component';
+import { EditarLivroComponent } from './livros/editar-livro/editar-livro.component';
+import { ListarLivrosComponent } from './livros/listar-livros/listar-livros.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'lista-autores',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
   },
   {
     path: 'lista-autores',

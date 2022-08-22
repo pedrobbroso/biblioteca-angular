@@ -1,9 +1,10 @@
-import { Title } from '@angular/platform-browser';
-import { Observable, Subject, catchError, of } from 'rxjs';
-import { Livro } from './../../models/livro';
-import { Router } from '@angular/router';
-import { LivroService } from './../../services/livro/livro.service';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { catchError, Observable, of, Subject } from 'rxjs';
+
+import { Livro } from './../../models/livro';
+import { LivroService } from './../../services/livro/livro.service';
 
 declare function abreModal(id: string): any;
 
