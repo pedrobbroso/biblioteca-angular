@@ -5,6 +5,7 @@
 2. Angular 13.0.0
 
 # Acessar o projeto
-1. git clone https://github.com/pedrobbroso/pedro-balbastro-broso-front-end (ou baixando o zip).
-2. npm install
-3. ng serve
+1. git clone https://github.com/pedrobbroso/pedro-balbastro-broso-front-end.git (ou baixando o zip).
+2. cd pedro-balbastro-broso-front-end
+3. npm install
+4. ng serve
